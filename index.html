@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ZENITH MAXX</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -14,8 +15,8 @@
     body {
       width: 100vw;
       height: 100vh;
-      background: black;
-      font-family: sans-serif;
+      background: linear-gradient(135deg, #0c0c15 0%, #1a1a2e 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       overflow: hidden;
       display: flex;
@@ -25,33 +26,195 @@
       position: relative;
     }
 
-    .period-box {
-      border: 2px solid orange;
-      border-radius: 10px;
-      padding: 15px 25px;
-      font-size: 6vw;
-      margin: 1vh 0;
-      text-align: center;
-      min-width: 80vw;
+    .container {
+      width: 90%;
+      max-width: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 10;
+      padding: 20px;
+      background: rgba(10, 10, 20, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 140, 0, 0.3);
     }
 
-    .btn {
-      background: pink;
-      border: 2px solid orange;
-      border-radius: 40px;
-      padding: 15px 40px;
-      font-weight: bold;
-      color: black;
-      font-size: 5vw;
-      cursor: pointer;
-      margin: 2vh 0;
+    .logo {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      background: linear-gradient(45deg, #ff8c00, #ffcc00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .period-box {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(255, 140, 0, 0.5);
+      border-radius: 15px;
+      padding: 15px 20px;
+      font-size: 1.2rem;
+      margin: 10px 0;
+      text-align: center;
+      letter-spacing: 1px;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .period-box:hover {
+      box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .countdown-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px 0;
+    }
+
+    .countdown-icon {
+      font-size: 1.5rem;
+      color: #ff8c00;
+      margin-right: 10px;
+    }
+
+    #countdown {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffcc00;
+    }
+
+    .prediction-container {
+      width: 100%;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .prediction-label {
+      font-size: 1rem;
+      color: #aaa;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
     }
 
     .prediction {
-      font-size: 8vw;
+      font-size: 2.5rem;
+      font-weight: 800;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px 30px;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .prediction.small {
+      color: #4cd964;
+      border: 2px solid #4cd964;
+      text-shadow: 0 0 10px rgba(76, 217, 100, 0.5);
+    }
+
+    .prediction.big {
+      color: #ff3b30;
+      border: 2px solid #ff3b30;
+      text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
+    }
+
+    .prediction.red {
+      color: #ff3b30;
+      border: 2px solid #ff3b30;
+      text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
+    }
+
+    .prediction.green {
+      color: #4cd964;
+      border: 2px solid #4cd964;
+      text-shadow: 0 0 10px rgba(76, 217, 100, 0.5);
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff8c00, #ff5e00);
+      border: none;
+      border-radius: 50px;
+      padding: 15px 40px;
       font-weight: bold;
-      margin: 2vh 0;
-      min-height: 10vh;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin: 15px 0;
+      box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6);
+    }
+
+    .btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
+    }
+
+    .btn i {
+      margin-right: 10px;
+    }
+
+    .instruction {
+      font-size: 0.9rem;
+      color: #ff8c00;
+      text-align: center;
+      margin: 10px 0;
+      max-width: 300px;
+      line-height: 1.4;
+    }
+
+    .blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(15px);
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      display: none;
+    }
+
+    .spinner {
+      width: 70px;
+      height: 70px;
+      border: 5px solid rgba(255, 140, 0, 0.3);
+      border-radius: 50%;
+      border-top-color: #ff8c00;
+      animation: spin 1s ease-in-out infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .loading-text {
+      color: #ff8c00;
+      font-size: 1.5rem;
+      font-weight: 600;
     }
 
     canvas {
@@ -63,41 +226,81 @@
       z-index: -1;
     }
 
-    .blur-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      backdrop-filter: blur(10px);
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 100;
-      display: none;
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      color: #666;
+      font-size: 0.8rem;
+      text-align: center;
     }
-    
-    .instruction {
-      font-size: 3vw;
-      color: orange;
-      margin-top: -1vh;
-      margin-bottom: 1vh;
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      .container {
+        width: 95%;
+        padding: 15px;
+      }
+      
+      .logo {
+        font-size: 2rem;
+      }
+      
+      .period-box {
+        font-size: 1rem;
+        padding: 12px 15px;
+      }
+      
+      .prediction {
+        font-size: 2rem;
+        padding: 12px 20px;
+      }
+      
+      .btn {
+        padding: 12px 30px;
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="period-box" id="period">2025XXXX-XXXXX</div>
-  <div class="period-box" id="countdown">00:00</div>
-  <div class="prediction" id="prediction">- - -</div>
-  <button class="btn" onclick="showLoading()">CHANGE</button>
-  <div class="instruction">CLICK ON CHANGE AT 20-40 SEC TIMER</div>
+  <div class="container">
+    <div class="logo"></div>
+    
+    <div class="period-box" id="period">2025XXXX-XXXXX</div>
+    
+    <div class="countdown-container">
+      <div class="countdown-icon"><i class="fas fa-clock"></i></div>
+      <div id="countdown">00:00</div>
+    </div>
+    
+    <div class="prediction-container">
+      <div class="prediction-label"></div>
+      <div class="prediction" id="prediction">- - -</div>
+    </div>
+    
+    <button class="btn" onclick="showLoading()">
+      <i class="fas fa-sync-alt"></i> CHANGE
+    </button>
+    
+    <div class="instruction">CLICK ON CHANGE AT 20-40 SEC TIMER</div>
+  </div>
 
-  <div class="blur-overlay" id="blurOverlay"></div>
+  <div class="blur-overlay" id="blurOverlay">
+    <div class="spinner"></div>
+    <div class="loading-text">---</div>
+  </div>
 
   <canvas id="bg"></canvas>
+  
+  <div class="footer">
+    
+  </div>
 
   <script>
     // Global variables
     let currentPeriod = '';
-    let currentPrediction = '- - -';
+    let oppositePrediction = '- - -';
+    let lastActualPrediction = '';
 
     // Timer implementation
     function updateTime() {
@@ -123,25 +326,55 @@
       // Check if period changed
       if (newPeriod !== currentPeriod) {
         currentPeriod = newPeriod;
-        document.getElementById('prediction').textContent = '- - -';
+        generateOppositePrediction();
+      }
+    }
+    
+    // Generate actual prediction (not shown to user)
+    function generateActualPrediction() {
+      const predictions = ['SMALL', 'BIG', 'RED', 'GREEN'];
+      lastActualPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+      return lastActualPrediction;
+    }
+    
+    // Generate opposite prediction based on actual prediction
+    function generateOppositePrediction() {
+      const actual = generateActualPrediction();
+      
+      // Define opposites
+      const opposites = {
+        'SMALL': 'BIG',
+        'BIG': 'SMALL',
+        'RED': 'GREEN',
+        'GREEN': 'RED'
+      };
+      
+      oppositePrediction = opposites[actual] || '- - -';
+      
+      // Update display
+      const predictionElement = document.getElementById('prediction');
+      predictionElement.textContent = oppositePrediction;
+      
+      // Remove all previous classes
+      predictionElement.classList.remove('small', 'big', 'red', 'green');
+      
+      // Add appropriate class for styling
+      if (oppositePrediction === 'SMALL' || oppositePrediction === 'BIG') {
+        predictionElement.classList.add(oppositePrediction.toLowerCase());
+      } else if (oppositePrediction === 'RED' || oppositePrediction === 'GREEN') {
+        predictionElement.classList.add(oppositePrediction.toLowerCase());
       }
     }
     
     // Blur overlay and prediction
     function showLoading() {
       const blurOverlay = document.getElementById('blurOverlay');
-      blurOverlay.style.display = 'block';
+      blurOverlay.style.display = 'flex';
       
       setTimeout(() => {
         blurOverlay.style.display = 'none';
-        generatePrediction();
-      }, 800);
-    }
-    
-    function generatePrediction() {
-      const predictions = ['SMALL', 'BIG', 'RED', 'GREEN'];
-      currentPrediction = predictions[Math.floor(Math.random() * predictions.length)];
-      document.getElementById('prediction').textContent = currentPrediction;
+        generateOppositePrediction();
+      }, 1500);
     }
 
     // Run the timer every second
@@ -161,17 +394,36 @@
     resizeCanvas();
     
     const dots = [];
-    for (let i = 0; i < 50; i++) {
+    const dotCount = window.innerWidth < 600 ? 30 : 50;
+    
+    for (let i = 0; i < dotCount; i++) {
       dots.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5
+        vx: (Math.random() - 0.5) * 0.7,
+        vy: (Math.random() - 0.5) * 0.7,
+        size: Math.random() * 2 + 1
       });
     }
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Draw gradient background
+      const gradient = ctx.createRadialGradient(
+        canvas.width / 2,
+        canvas.height / 2,
+        0,
+        canvas.width / 2,
+        canvas.height / 2,
+        Math.max(canvas.width, canvas.height)
+      );
+      gradient.addColorStop(0, 'rgba(25, 25, 45, 0.8)');
+      gradient.addColorStop(1, 'rgba(10, 10, 20, 1)');
+      
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
       for (let dot of dots) {
         dot.x += dot.vx;
         dot.y += dot.vy;
@@ -180,8 +432,8 @@
         if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
 
         ctx.beginPath();
-        ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = "orange";
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 140, 0, 0.7)";
         ctx.fill();
       }
 
@@ -194,7 +446,7 @@
             ctx.beginPath();
             ctx.moveTo(dots[i].x, dots[i].y);
             ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = "orange";
+            ctx.strokeStyle = `rgba(255, 140, 0, ${0.5 - dist/200})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
@@ -205,6 +457,9 @@
     }
 
     draw();
+    
+    // Initialize the opposite prediction
+    generateOppositePrediction();
   </script>
 </body>
 </html>
