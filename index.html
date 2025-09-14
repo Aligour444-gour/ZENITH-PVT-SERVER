@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ZENITH MAXX</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <title>ZENITH MAXX PREDICTION</title>
   <style>
     * {
       margin: 0;
@@ -15,7 +14,7 @@
     body {
       width: 100vw;
       height: 100vh;
-      background: linear-gradient(135deg, #0c0c15 0%, #1a1a2e 100%);
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white;
       overflow: hidden;
@@ -27,158 +26,105 @@
     }
 
     .container {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 0 30px rgba(255, 165, 0, 0.4);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 165, 0, 0.3);
       width: 90%;
       max-width: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      z-index: 10;
-      padding: 20px;
-      background: rgba(10, 10, 20, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(255, 140, 0, 0.3);
+      text-align: center;
     }
 
-    .logo {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 20px;
-      background: linear-gradient(45deg, #ff8c00, #ffcc00);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-align: center;
+    .title {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      color: #ffa500;
+      text-shadow: 0 0 10px rgba(255, 165, 0, 0.5);
+      letter-spacing: 1px;
     }
 
     .period-box {
-      width: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      border: 2px solid rgba(255, 140, 0, 0.5);
-      border-radius: 15px;
-      padding: 15px 20px;
+      border: 2px solid orange;
+      border-radius: 10px;
+      padding: 15px 25px;
       font-size: 1.2rem;
-      margin: 10px 0;
+      margin: 1vh 0;
       text-align: center;
-      letter-spacing: 1px;
-      box-shadow: 0 0 15px rgba(255, 140, 0, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .period-box:hover {
-      box-shadow: 0 0 20px rgba(255, 140, 0, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .countdown-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 10px 0;
-    }
-
-    .countdown-icon {
-      font-size: 1.5rem;
-      color: #ff8c00;
-      margin-right: 10px;
-    }
-
-    #countdown {
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #ffcc00;
-    }
-
-    .prediction-container {
       width: 100%;
-      margin: 20px 0;
+      background: rgba(0, 0, 0, 0.5);
+      letter-spacing: 1px;
+    }
+
+    .countdown-box {
+      border: 2px solid #00b4d8;
+      border-radius: 10px;
+      padding: 15px 25px;
+      font-size: 1.5rem;
+      margin: 1vh 0;
       text-align: center;
-    }
-
-    .prediction-label {
-      font-size: 1rem;
-      color: #aaa;
-      margin-bottom: 5px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-    }
-
-    .prediction {
-      font-size: 2.5rem;
-      font-weight: 800;
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px 30px;
-      border-radius: 15px;
-      background: rgba(0, 0, 0, 0.3);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease;
-    }
-
-    .prediction.small {
-      color: #4cd964;
-      border: 2px solid #4cd964;
-      text-shadow: 0 0 10px rgba(76, 217, 100, 0.5);
-    }
-
-    .prediction.big {
-      color: #ff3b30;
-      border: 2px solid #ff3b30;
-      text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
-    }
-
-    .prediction.red {
-      color: #ff3b30;
-      border: 2px solid #ff3b30;
-      text-shadow: 0 0 10px rgba(255, 59, 48, 0.5);
-    }
-
-    .prediction.green {
-      color: #4cd964;
-      border: 2px solid #4cd964;
-      text-shadow: 0 0 10px rgba(76, 217, 100, 0.5);
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      font-weight: bold;
     }
 
     .btn {
-      background: linear-gradient(45deg, #ff8c00, #ff5e00);
+      background: linear-gradient(to right, #ff416c, #ff4b2b);
       border: none;
-      border-radius: 50px;
+      border-radius: 40px;
       padding: 15px 40px;
       font-weight: bold;
       color: white;
       font-size: 1.2rem;
       cursor: pointer;
-      margin: 15px 0;
-      box-shadow: 0 5px 15px rgba(255, 140, 0, 0.4);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      margin: 2vh 0;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(255, 75, 43, 0.4);
     }
 
     .btn:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(255, 140, 0, 0.6);
+      box-shadow: 0 8px 20px rgba(255, 75, 43, 0.6);
     }
 
     .btn:active {
       transform: translateY(1px);
-      box-shadow: 0 3px 10px rgba(255, 140, 0, 0.4);
     }
 
-    .btn i {
-      margin-right: 10px;
+    .prediction {
+      font-size: 3.5rem;
+      font-weight: bold;
+      margin: 2vh 0;
+      min-height: 10vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.5s;
+      text-shadow: 0 0 15px currentColor;
+    }
+
+    .prediction.small {
+      color: #4cc9f0;
+      text-shadow: 0 0 15px #4cc9f0;
+    }
+
+    .prediction.big {
+      color: #f72585;
+      text-shadow: 0 0 15px #f72585;
+    }
+
+    .prediction.default {
+      color: #adb5bd;
     }
 
     .instruction {
       font-size: 0.9rem;
-      color: #ff8c00;
+      color: #f48c06;
+      margin-top: 1vh;
+      margin-bottom: 1vh;
       text-align: center;
-      margin: 10px 0;
-      max-width: 300px;
-      line-height: 1.4;
+      max-width: 80%;
     }
 
     .blur-overlay {
@@ -190,31 +136,30 @@
       backdrop-filter: blur(15px);
       background-color: rgba(0, 0, 0, 0.7);
       z-index: 100;
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       flex-direction: column;
-      display: none;
     }
 
-    .spinner {
-      width: 70px;
-      height: 70px;
-      border: 5px solid rgba(255, 140, 0, 0.3);
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border: 5px solid rgba(255, 165, 0, 0.3);
       border-radius: 50%;
-      border-top-color: #ff8c00;
+      border-top-color: orange;
       animation: spin 1s ease-in-out infinite;
       margin-bottom: 20px;
     }
 
-    @keyframes spin {
-      to { transform: rotate(360deg); }
+    .loading-text {
+      color: orange;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
 
-    .loading-text {
-      color: #ff8c00;
-      font-size: 1.5rem;
-      font-weight: 600;
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     canvas {
@@ -226,82 +171,59 @@
       z-index: -1;
     }
 
-    .footer {
+    footer {
       position: absolute;
-      bottom: 20px;
-      color: #666;
+      bottom: 10px;
+      color: rgba(255, 255, 255, 0.6);
       font-size: 0.8rem;
-      text-align: center;
     }
 
     /* Responsive adjustments */
     @media (max-width: 600px) {
       .container {
+        padding: 1.5rem;
         width: 95%;
-        padding: 15px;
       }
       
-      .logo {
-        font-size: 2rem;
-      }
-      
-      .period-box {
-        font-size: 1rem;
-        padding: 12px 15px;
+      .title {
+        font-size: 1.8rem;
       }
       
       .prediction {
-        font-size: 2rem;
-        padding: 12px 20px;
+        font-size: 2.8rem;
       }
       
       .btn {
         padding: 12px 30px;
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="logo"></div>
-    
+    <h1 class="title"></h1>
     <div class="period-box" id="period">2025XXXX-XXXXX</div>
-    
-    <div class="countdown-container">
-      <div class="countdown-icon"><i class="fas fa-clock"></i></div>
-      <div id="countdown">00:00</div>
-    </div>
-    
-    <div class="prediction-container">
-      <div class="prediction-label"></div>
-      <div class="prediction" id="prediction">- - -</div>
-    </div>
-    
-    <button class="btn" onclick="showLoading()">
-      <i class="fas fa-sync-alt"></i> CHANGE
-    </button>
-    
-    <div class="instruction">CLICK ON CHANGE AT 20-40 SEC TIMER</div>
+    <div class="countdown-box" id="countdown">00:00</div>
+    <div class="prediction default" id="prediction">- - -</div>
+    <button class="btn" onclick="showLoading()">CHANGE</button>
+    <div class="instruction"></div>
   </div>
 
   <div class="blur-overlay" id="blurOverlay">
-    <div class="spinner"></div>
+    <div class="loading-spinner"></div>
     <div class="loading-text">---</div>
   </div>
 
   <canvas id="bg"></canvas>
   
-  <div class="footer">
-    
-  </div>
+  <footer></footer>
 
   <script>
     // Global variables
     let currentPeriod = '';
-    let oppositePrediction = '- - -';
-    let lastActualPrediction = '';
-    let predictionGenerated = false;
+    let actualPrediction = '';
+    let oppositeShown = false;
 
     // Timer implementation
     function updateTime() {
@@ -327,49 +249,16 @@
       // Check if period changed
       if (newPeriod !== currentPeriod) {
         currentPeriod = newPeriod;
-        // Reset prediction when period changes
-        predictionGenerated = false;
-        document.getElementById('prediction').textContent = '- - -';
-        document.getElementById('prediction').className = 'prediction';
+        resetPrediction();
       }
     }
     
-    // Generate actual prediction (not shown to user)
-    function generateActualPrediction() {
-      const predictions = ['SMALL', 'BIG', 'RED', 'GREEN'];
-      lastActualPrediction = predictions[Math.floor(Math.random() * predictions.length)];
-      return lastActualPrediction;
-    }
-    
-    // Generate opposite prediction based on actual prediction
-    function generateOppositePrediction() {
-      const actual = generateActualPrediction();
-      
-      // Define opposites
-      const opposites = {
-        'SMALL': 'BIG',
-        'BIG': 'SMALL',
-        'RED': 'GREEN',
-        'GREEN': 'RED'
-      };
-      
-      oppositePrediction = opposites[actual] || '- - -';
-      
-      // Update display
+    function resetPrediction() {
+      actualPrediction = '';
+      oppositeShown = false;
       const predictionElement = document.getElementById('prediction');
-      predictionElement.textContent = oppositePrediction;
-      
-      // Remove all previous classes
-      predictionElement.classList.remove('small', 'big', 'red', 'green');
-      
-      // Add appropriate class for styling
-      if (oppositePrediction === 'SMALL' || oppositePrediction === 'BIG') {
-        predictionElement.classList.add(oppositePrediction.toLowerCase());
-      } else if (oppositePrediction === 'RED' || oppositePrediction === 'GREEN') {
-        predictionElement.classList.add(oppositePrediction.toLowerCase());
-      }
-      
-      predictionGenerated = true;
+      predictionElement.textContent = '- - -';
+      predictionElement.className = 'prediction default';
     }
     
     // Blur overlay and prediction
@@ -379,15 +268,28 @@
       
       setTimeout(() => {
         blurOverlay.style.display = 'none';
-        generateOppositePrediction();
+        generatePrediction();
       }, 1500);
+    }
+    
+    function generatePrediction() {
+      const predictions = ['SMALL', 'BIG'];
+      actualPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+      
+      // Show the opposite of the actual prediction
+      const displayedPrediction = actualPrediction === 'SMALL' ? 'BIG' : 'SMALL';
+      oppositeShown = true;
+      
+      const predictionElement = document.getElementById('prediction');
+      predictionElement.textContent = displayedPrediction;
+      predictionElement.className = 'prediction ' + displayedPrediction.toLowerCase();
     }
 
     // Run the timer every second
     updateTime();
     setInterval(updateTime, 1000);
 
-    // Particle background
+    // Enhanced Particle background
     const canvas = document.getElementById("bg");
     const ctx = canvas.getContext("2d");
     
@@ -400,32 +302,29 @@
     resizeCanvas();
     
     const dots = [];
-    const dotCount = window.innerWidth < 600 ? 30 : 50;
+    const dotCount = Math.min(100, Math.floor(window.innerWidth * window.innerHeight / 5000));
     
     for (let i = 0; i < dotCount; i++) {
       dots.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.7,
-        vy: (Math.random() - 0.5) * 0.7,
-        size: Math.random() * 2 + 1
+        vx: (Math.random() - 0.5) * 0.8,
+        vy: (Math.random() - 0.5) * 0.8,
+        size: Math.random() * 2 + 1,
+        color: `hsl(${Math.random() * 60 + 20}, 100%, 70%)` // Orange/yellow hues
       });
     }
 
     function draw() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Draw gradient background
+      // Add a subtle gradient background
       const gradient = ctx.createRadialGradient(
-        canvas.width / 2,
-        canvas.height / 2,
-        0,
-        canvas.width / 2,
-        canvas.height / 2,
-        Math.max(canvas.width, canvas.height)
+        canvas.width / 2, canvas.height / 2, 0,
+        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 1.5
       );
-      gradient.addColorStop(0, 'rgba(25, 25, 45, 0.8)');
-      gradient.addColorStop(1, 'rgba(10, 10, 20, 1)');
+      gradient.addColorStop(0, 'rgba(15, 12, 41, 0.8)');
+      gradient.addColorStop(1, 'rgba(36, 36, 62, 0.8)');
       
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -439,7 +338,7 @@
 
         ctx.beginPath();
         ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(255, 140, 0, 0.7)";
+        ctx.fillStyle = dot.color;
         ctx.fill();
       }
 
@@ -452,7 +351,7 @@
             ctx.beginPath();
             ctx.moveTo(dots[i].x, dots[i].y);
             ctx.lineTo(dots[j].x, dots[j].y);
-            ctx.strokeStyle = `rgba(255, 140, 0, ${0.5 - dist/200})`;
+            ctx.strokeStyle = `rgba(255, 165, 0, ${0.2 * (1 - dist/100)})`;
             ctx.lineWidth = 0.5;
             ctx.stroke();
           }
