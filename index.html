@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ZENITH MAXX</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      font-family: sans-serif;
+      color: white;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .period-box {
+      border: 2px solid orange;
+      border-radius: 10px;
+      padding: 15px 25px;
+      font-size: 6vw;
+      margin: 1vh 0;
+      text-align: center;
+      min-width: 80vw;
+    }
+
+    .btn {
+      background: pink;
+      border: 2px solid orange;
+      border-radius: 40px;
+      padding: 15px 40px;
+      font-weight: bold;
+      color: black;
+      font-size: 5vw;
+      cursor: pointer;
+      margin: 2vh 0;
+    }
+
+    .prediction {
+      font-size: 8vw;
+      font-weight: bold;
+      margin: 2vh 0;
+      min-height: 10vh;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .blur-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backdrop-filter: blur(10px);
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      display: none;
+    }
+    
+    .instruction {
+      font-size: 3vw;
+      color: orange;
+      margin-top: -1vh;
+      margin-bottom: 1vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="period-box" id="period">2025XXXX-XXXXX</div>
+  <div class="period-box" id="countdown">00:00</div>
+  <div class="prediction" id="prediction">- - -</div>
+  <button class="btn" onclick="showLoading()">CHANGE</button>
+  <div class="instruction">CLICK ON CHANGE AT 20-40 SEC TIMER</div>
+
+  <div class="blur-overlay" id="blurOverlay"></div>
+
+  <canvas id="bg"></canvas>
+
+  <script>
+    // Global variables
+    let currentPeriod = '';
+    let currentPrediction = '- - -';
+
+    // Timer implementation
+    function updateTime() {
+      const now = new Date();
+      const seconds = now.getUTCSeconds();
+      const remainingSeconds = 60 - seconds;
+      
+      const totalMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
+      
+      // Period Format: yyyyMMdd100010001 + totalMinutes
+      const newPeriod = now.getUTCFullYear() + 
+                       String(now.getUTCMonth() + 1).padStart(2, '0') + 
+                       String(now.getUTCDate()).padStart(2, '0') + 
+                       '1000' + (10001 + totalMinutes);
+      
+      // Update period display
+      document.getElementById('period').textContent = newPeriod;
+      
+      // Countdown format: "00:00"
+      const formattedTime = `00:${String(remainingSeconds).padStart(2, '0')}`;
+      document.getElementById('countdown').textContent = formattedTime;
+
+      // Check if period changed
+      if (newPeriod !== currentPeriod) {
+        currentPeriod = newPeriod;
+        document.getElementById('prediction').textContent = '- - -';
+      }
+    }
+    
+    // Blur overlay and prediction
+    function showLoading() {
+      const blurOverlay = document.getElementById('blurOverlay');
+      blurOverlay.style.display = 'block';
+      
+      setTimeout(() => {
+        blurOverlay.style.display = 'none';
+        generatePrediction();
+      }, 800);
+    }
+    
+    function generatePrediction() {
+      const predictions = ['SMALL', 'BIG', 'RED', 'GREEN'];
+      currentPrediction = predictions[Math.floor(Math.random() * predictions.length)];
+      document.getElementById('prediction').textContent = currentPrediction;
+    }
+
+    // Run the timer every second
+    updateTime();
+    setInterval(updateTime, 1000);
+
+    // Particle background
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+    
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+    
+    const dots = [];
+    for (let i = 0; i < 50; i++) {
+      dots.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let dot of dots) {
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        if (dot.x < 0 || dot.x > canvas.width) dot.vx *= -1;
+        if (dot.y < 0 || dot.y > canvas.height) dot.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "orange";
+        ctx.fill();
+      }
+
+      for (let i = 0; i < dots.length; i++) {
+        for (let j = i + 1; j < dots.length; j++) {
+          const dx = dots[i].x - dots[j].x;
+          const dy = dots[i].y - dots[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 100) {
+            ctx.beginPath();
+            ctx.moveTo(dots[i].x, dots[i].y);
+            ctx.lineTo(dots[j].x, dots[j].y);
+            ctx.strokeStyle = "orange";
+            ctx.lineWidth = 0.5;
+            ctx.stroke();
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
