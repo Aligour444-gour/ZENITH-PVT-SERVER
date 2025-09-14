@@ -301,6 +301,7 @@
     let currentPeriod = '';
     let oppositePrediction = '- - -';
     let lastActualPrediction = '';
+    let predictionGenerated = false;
 
     // Timer implementation
     function updateTime() {
@@ -326,7 +327,10 @@
       // Check if period changed
       if (newPeriod !== currentPeriod) {
         currentPeriod = newPeriod;
-        generateOppositePrediction();
+        // Reset prediction when period changes
+        predictionGenerated = false;
+        document.getElementById('prediction').textContent = '- - -';
+        document.getElementById('prediction').className = 'prediction';
       }
     }
     
@@ -364,6 +368,8 @@
       } else if (oppositePrediction === 'RED' || oppositePrediction === 'GREEN') {
         predictionElement.classList.add(oppositePrediction.toLowerCase());
       }
+      
+      predictionGenerated = true;
     }
     
     // Blur overlay and prediction
@@ -457,9 +463,6 @@
     }
 
     draw();
-    
-    // Initialize the opposite prediction
-    generateOppositePrediction();
   </script>
 </body>
 </html>
